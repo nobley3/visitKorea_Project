@@ -1,0 +1,325 @@
+-- 시도 테이블
+create table SidoTbl ( 
+  SidoCode number primary key, -- 시도 코드
+  Name varchar(21) not null, -- 시도명
+  nickName varchar2(6) not null
+);
+
+-- 시군구 테이블
+create table SigunguTbl (
+  sigungucode varchar(5), -- 시군구 코드
+  Name varchar2(15) not null -- 시군구명, NOT NULL 제약조건 추가
+);
+
+-- A01(자연), A02(인문(문화/예술/역사)), A03(레포츠), A04(쇼핑), A05(음식), 
+-- B02(숙박), C01(추천코스)
+create table category2Tbl(
+  cat2code varchar2(5) primary key,
+  name varchar2(30) not null,
+  cat1code varchar2(3)
+);
+
+create table category3Tbl(
+cat3code varchar2(9) primary key,
+name varchar2(40) not null,
+cat1code varchar2(3),
+cat2code varchar2(5) references category2Tbl(cat2code)
+);
+
+
+-- 좋아요 테이블
+create table likeTbl(
+  userId varchar2(20) references usertbl(userid),
+  contentid varchar2(30) references contentInfoTbl(contentid),
+  primary key (userId, contentid)
+);
+
+-- 회원정보 테이블
+create table usertbl(
+  userid varchar2(20) primary key, 
+  nickname varchar2(20), 
+  sort varchar2(10) check(sort in ('01','02')), -- 01(관리자) 또는 02(사용자)
+  pw varchar2(10), 
+  section varchar2(10) check(section in ('01', '02')), -- 01(일반) 또는 02(카카오)
+  profileurl varchar2(100)
+);
+
+
+
+-- 게시물 테이블
+create table contentInfoTbl (
+    contentid varchar2(30) primary key , -- 게시물 ID 
+    contenttypeid number(2), -- 게시물 유형 (장소/축제/공연 등)
+    -- 관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 
+    -- 32:숙박, 38:쇼핑, 39:음식점) ID
+    cat1 varchar2(3), -- 대분류
+    cat2 varchar2(5), -- 중분류
+    cat3 varchar2(9), -- 소분류
+    title varchar2(255), -- 게시물 제목
+    sidoCode number, -- 시/도 코드
+    sigunguCode varchar2(5),   -- 시/군/구 코드
+    address varchar2(255),  -- 주소
+    tel varchar2(200),  -- 전화번호
+    createdtime varchar2(14), -- 생성시간
+    modifiedtime varchar2(14), -- 수정시간
+    mapx varchar2(15),  -- 지리적 경도
+    mapy varchar2(15),  -- 지리적 위도
+    mlevel number, -- 지도레벨
+    firstimage varchar2(400),
+    firstimage2 varchar2(400),
+    view_cnt number, -- 조회수
+    homepage varchar2(1000),
+    overview CLOB -- 상세내용
+);
+
+-- 코스 지역 테이블
+create table CourseAreaTbl (
+    ContentId varchar2(30),
+    SubContentId varchar2(30),
+    Num number,
+    primary key (ContentId, SubContentId)
+);
+
+-- 이미지 테이블
+create table imgtbl(
+  imgId varchar2(10) primary key,
+  contentid varchar2(30) references contentInfoTbl(contentid),
+  imgurl varchar2(500),
+  imgnum number
+);
+-- 이미지 시퀀스
+create sequence imgid_sequence 
+start with 1
+INCREMENT BY 1
+MAXVALUE 999999999
+NOCYCLE;
+
+select * from imgtbl;
+ 
+-- 여행지 추가 정보 테이블
+create table areatbl (
+    contentid varchar2(30) primary key,
+    infocenter varchar(1000),
+    restdate varchar(1000),
+    expguide varchar(1000),
+    expagerange varchar(1000),
+    usetime varchar(1000),
+    parking varchar(1000)
+);
+
+-- 축제/공연/행사 추가 정보 테이블
+create table eventtbl (
+    contentid varchar2(30) primary key, 
+    eventstartdate varchar2(8), -- 행사 시작일
+    eventenddate varchar2(8), -- 행사 종료일
+    sponsor1 varchar2(1000),
+    sponsor2 varchar2(1000),
+    playtime varchar2(1000),
+    eventplace varchar2(1000),
+    eventhomepage varchar2(1000),
+    agelimit varchar2(1000),
+    usetimefestival varchar2(1000)
+);
+
+-- 나의 코스 테이블
+create table mycourseTbl(
+  userid varchar2(20) references usertbl(userid),
+  coursecode varchar2(100),
+  coursename varchar2(500),
+  coursenum number(30),
+  coursecontent CLOB,
+  firstimage varchar2(200),
+  primary key (userid, coursecode)
+);
+
+-- 나의 코스 테이블 삽입 시퀀스
+create sequence coursenum_seq start with 1;
+alter sequence coursenum_seq restart;
+
+-- 나의 코스 게시물 연결 테이블
+create table mycourseContentTbl(
+  coursecode varchar2(100),
+  contentid varchar2(30),
+  contentnum number(3),
+  primary key (coursecode, contentid)
+);
+ 
+-- 문의하기 테이블
+create table qatbl(
+  qacode varchar(10) primary key,
+  userid varchar2(20) references usertbl(userid),
+  qatitle varchar2(100) not null,
+  qacontent CLOB not null,
+  qafileurl varchar2(500),
+  qawirtedate date,
+  answer number(1) -- 0(답변X), 1(답변0)
+);
+-- 문의하기 테이블 시퀀스
+create sequence qacode_seq start with 1;
+
+--------------------------------------------------------------------------------
+
+-- 리뷰테이블
+CREATE TABLE ReviewTbl (
+    REVIEWCODE NUMBER primary key,
+    USERID VARCHAR2(20) NOT NULL  references usertbl(userid),
+    CONTENT CLOB,
+    WRITEDAY DATE NOT NULL,
+    contentid VARCHAR2(30) references contentInfoTbl(contentid),
+    parentcode NUMBER 
+);
+create sequence reviewnumber
+increment by 1
+start with 1
+minvalue 1
+maxvalue 10000
+nocycle
+nocache;
+
+
+
+-- 핫플콕콕 맛집
+create table FamousRestTbl (
+  CONTENTID varchar2(30) primary key , -- 게시물 ID 
+  CONTENTTYPEID number(2), -- 게시물 유형 (장소/축제/공연 등)
+    -- 관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 
+    -- 32:숙박, 38:쇼핑, 39:음식점) ID
+  CAT1 varchar2(3), -- 대분류
+  CAT2 varchar2(5), -- 중분류
+  CAT3 varchar2(9), -- 소분류
+  TITLE varchar2(255), -- 게시물 제목
+  SIDOCODE number, -- 시/도 코드
+  SIGUNGUCODE  varchar2(5),   -- 시/군/구 코드
+  ADDRESS varchar2(255),  -- 주소
+  CREATEDTIME varchar2(14), -- 생성시간
+  MODIFIEDTIME varchar2(14), -- 수정시간
+  MAPX varchar2(15),  -- 지리적 경도
+  MAPY varchar2(15),  -- 지리적 위도
+  MLEVEL number, -- 지도레벨
+  FIRSTIMAGE varchar2(400), -- 대표사진
+  MCATEGORY varchar(20) not null, -- 음식
+  SCATEGORY varchar(30) not null, -- 음식종류
+  SEARCHCOUNT number, -- 조회수
+  OVERVIEW CLOB -- 상세내용
+  );
+
+-- 핫플콕콕 여행지
+create table FamousPlaceTbl (
+  CONTENTID varchar2(30) primary key , -- 게시물 ID 
+  CONTENTTYPEID number(2), -- 게시물 유형 (장소/축제/공연 등)
+    -- 관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 
+    -- 32:숙박, 38:쇼핑, 39:음식점) ID
+  CAT1 varchar2(3), -- 대분류
+  CAT2 varchar2(5), -- 중분류
+  CAT3 varchar2(9), -- 소분류
+  TITLE varchar2(255), -- 게시물 제목
+  SIDOCODE number, -- 시/도 코드
+  SIGUNGUCODE  varchar2(5),   -- 시/군/구 코드
+  ADDRESS varchar2(255),  -- 주소
+  CREATEDTIME varchar2(14), -- 생성시간
+  MODIFIEDTIME varchar2(14), -- 수정시간
+  MAPX varchar2(15),  -- 지리적 경도
+  MAPY varchar2(15),  -- 지리적 위도
+  MLEVEL number, -- 지도레벨
+  FIRSTIMAGE varchar2(400), -- 대표사진
+  MCATEGORY varchar(20) not null, -- 여행지
+  SCATEGORY varchar(30) not null, -- 여행지종류
+  SEARCHCOUNT number, -- 조회수
+  OVERVIEW CLOB -- 상세내용
+  );
+
+-- 지역페이지 테이블
+create table festival(
+addr1 varchar2(1000),
+addr2 varchar2(1000),
+booktour varchar2(1000),
+cat1 varchar2(1000),
+cat2 varchar2(1000),
+cat3 varchar2(1000),
+contentid varchar2(1000),
+contenttypeid number,
+createdtime varchar2(1000),
+eventstartdate varchar2(2000),
+eventenddate varchar2(2000),
+firstimage varchar2(2000),
+firstimage2 varchar2(2000),
+cpyrhtDivCd varchar2(2000),
+mapx varchar2(2000),
+mapy varchar2(2000),
+mlevel number,
+modifiedtime varchar2(2000),
+areacode number,
+sigungucode number,
+tel varchar2(2000),
+title varchar2(2000)
+);
+
+
+-- 관리자페이지 테이블
+create table mainTbl(
+ contentid varchar2(30) primary key , -- 게시물 ID 
+ contenttypeid number(2) -- 게시물 유형 (장소/축제/공연 등)
+);
+
+-- 추천 코스 테이블
+CREATE TABLE TravelCourse (
+    course_id VARCHAR2(50),
+    user_id VARCHAR2(50), 
+    course_name VARCHAR2(100),
+    duration NUMBER,
+    course VARCHAR2(500),
+    total_distance NUMBER, 
+    locations VARCHAR2(100),
+      create_date DATE,
+      first_img VARCHAR2(500),
+    second_img VARCHAR2(500),
+    third_img VARCHAR2(500)
+);
+
+
+
+-- AI콕콕플래너테이블
+CREATE TABLE RECPLACETBL  
+   (CONTENTID VARCHAR2(300), 
+	CONTENTTYPEID NUMBER, 
+	CAT1 VARCHAR2(3), 
+	CAT2 VARCHAR2(5), 
+	CAT3 VARCHAR2(9), 
+	TITLE VARCHAR2(255), 
+	SIDOCODE NUMBER, 
+	SIGUNGUCODE VARCHAR2(5), 
+	ADDRESS VARCHAR2(255), 
+	CREATEDTIME VARCHAR2(14), 
+	MODIFIEDTIME VARCHAR2(14), 
+	MAPX VARCHAR2(20), 
+	MAPY VARCHAR2(20), 
+	MLEVEL NUMBER, 
+	FIRSTIMAGE VARCHAR2(400), 
+    MCATEGORY VARCHAR2(255),
+    SCATEGORY VARCHAR2(255),
+    SEARCHCOUNT NUMBER,
+	OVERVIEW CLOB
+   ); 
+
+
+CREATE TABLE RECFOODTBL  
+   (CONTENTID VARCHAR2(300), 
+	CONTENTTYPEID NUMBER, 
+	CAT1 VARCHAR2(3), 
+	CAT2 VARCHAR2(5), 
+	CAT3 VARCHAR2(9), 
+	TITLE VARCHAR2(255), 
+	SIDOCODE NUMBER, 
+	SIGUNGUCODE VARCHAR2(5), 
+	ADDRESS VARCHAR2(255), 
+	CREATEDTIME VARCHAR2(14), 
+	MODIFIEDTIME VARCHAR2(14), 
+	MAPX VARCHAR2(20), 
+	MAPY VARCHAR2(20), 
+	MLEVEL NUMBER, 
+	FIRSTIMAGE VARCHAR2(400), 
+    MCATEGORY VARCHAR2(255),
+    SCATEGORY VARCHAR2(255),
+    SEARCHCOUNT NUMBER,
+	OVERVIEW CLOB
+   );

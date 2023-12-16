@@ -1,0 +1,400 @@
+@charset "UTF-8";
+footer {
+    width: 100%;
+    margin-top: 60px;
+    padding-bottom: 10px;
+    background: #f7f7f7;
+    /* box-sizing: border-box; */
+}
+a{
+	text-decoration: none;
+	
+} 
+li{
+	list-style: none;
+}
+button{
+	border: none;
+}
+.SYJfooterNotice {
+    width: 100%;
+    height: 65px;
+    
+    border-top: 1px solid #e6e6e6;
+    background: #f0f0f0;
+    /*overflow: hidden;*/
+    display: flex;
+    justify-content: center;
+}
+.innerBox{
+	position:relative;
+	 
+	width: 940px;
+	height: 65px;
+	/*line-height: 65px;*/
+	
+}
+.NoticeSlideWrap{
+	
+	width:330px;
+	height: 65px;
+	position: relative;
+	padding: 0;
+	overflow: hidden;
+	
+}
+
+.newsList{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	box-sizing: content-box;
+	margin: 0px;
+	padding: 0px;
+	 
+     transition: top 0.5s ease-in-out;
+	 
+}
+
+        
+.newsList li{
+	 
+	margin-right: 620px
+	
+	
+}
+.newsList a{
+	display: block;
+	width: 320px;
+	font-size: 14px;
+	color: #333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	position: relative;
+	line-height: 65px;
+	 
+}
+
+.footerPlaywrap{
+	position: absolute;
+	top: 0;
+	left: 361px;
+	width: 19px;
+	text-align: center;
+}
+.footerPlaybtn{
+	display: inline-block;
+	overflow: hidden;
+	width: 19px;
+	height: 19px;
+	margin-top: 22px;
+	background: url(https://korean.visitkorea.or.kr/resources/images/common/btn_notice_play.png)0 0 no-repeat;
+	background-size: 19px 19px;
+	vertical-align: top;
+    text-indent: -9999px;
+    display: none;
+}
+.footerStopbtn{
+	overflow: hidden;
+	
+	width: 19px;
+    height: 19px;
+    margin-top: 22px;
+    background: url(https://korean.visitkorea.or.kr/resources/images/common/btn_notice_stop.png)0 0 no-repeat;
+    background-size: 19px 19px;
+    vertical-align: top;
+    text-indent: -9999px;
+}
+.btnPre{
+	position: absolute;
+	top: 50%;
+	left: 337px;
+	width: 19px;
+	height: 19px;
+	margin-top: -10px;
+	background: url(	https://korean.visitkorea.or.kr/resources/images/common/btn_notice_prev.png)0 0 no-repeat;
+	background-size: 19px 19px;
+    text-indent: -9999px;
+}
+.btnNex{
+	position: absolute;
+	top: 50%;
+	left: 385px;
+    width: 19px;
+    height: 19px;
+    margin-top: -10px;
+    background: url(https://korean.visitkorea.or.kr/resources/images/common/btn_notice_next.png)0 0 no-repeat;
+    background-size: 19px 19px;
+    text-indent: -9999px;
+}
+.btnPre,.btnNex{
+	 cursor: pointer;
+} 
+.footerPlus{
+	position: absolute;
+    left: 417px;
+    top: 50%;
+    width: 19px;
+    height: 19px;
+    margin-top: -10px;
+    background: url(	https://cdn.visitkorea.or.kr/resources/images/common/btn_notice_more.png)0 0 no-repeat;
+    background-size: 19px 19px;
+    text-indent: -9999px;
+}
+
+
+
+
+.selBox{
+	 
+	height: 65px;
+	position: absolute;
+	right:0px;
+	top:15px;
+	
+}
+.selBox select{
+	padding: 0 0 0 15px;
+	height: 35px;
+	width: calc(100% - 45px);
+	border-radius: 5px;
+	font-size: 13px;
+	background: #fff url(https://korean.visitkorea.or.kr/resources/images/main/ico_select5.png)100% 50%/24px 7px no-repeat;
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+  	appearance: none;
+}
+.selBox a{
+	display: inline-block;
+	width: 40px;
+	height: 35px;
+	line-height: 35px;
+	color: #fff;
+	background: #777676;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 13px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.selmember{
+	float: left;
+	width: 190px;
+	position: relative;
+	background: none;
+	border: 0;
+	margin: 0;
+}
+.selmember+.selmember{
+	width:265px;
+	margin-left:15px;
+}
+
+.SYJfooterBox {
+    width: 1100px;
+    margin: 0 auto;
+    /* padding: 0 15px 55px 15px; */
+
+}
+.SYJfootersnsList {
+    width: 1000px;
+    height: 120px;
+    text-align: center;
+    position: relative;
+    left: 30px;
+
+
+}
+
+.SYJfooterInfo {
+    width: 1000px;
+    height: 180.39px;
+    
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+    padding-left: 33px;
+    left: 30px;
+
+
+}
+
+.SYJfooterLogo {
+    width: 1000px;
+    height: 61px;
+
+}
+
+.Stitle {
+    display: inline-block;
+    margin-top: 14px;
+    padding-left: 33px;
+    background: url(https://korean.visitkorea.or.kr/resources/images/common/ico_footer_sns.png) no-repeat 0 50%/25px 26px;
+    font-weight: 700;
+    color: #333;
+    font-size: 16px;
+    line-height: 26px;
+
+}
+.SYJfooterUL {
+
+    list-style: none;
+    padding: 20px 0;
+}
+
+.SYJfootersnsList li {
+    display: inline-block;
+    margin-left: 33px;
+}
+
+.SYJfooterUL a {
+    text-decoration: none;
+
+}
+.SYJfootersnsList .SnsIcon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 40px 40px;
+    vertical-align: middle;
+}
+
+.SYJfootersnsList .iconB {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns1.png);
+}
+
+.SYJfootersnsList .iconB:hover {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns1_1.png);
+}
+
+.SYJfootersnsList .iconP {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns2.png);
+}
+
+.SYJfootersnsList .iconP:hover {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns2_1.png);
+}
+
+.SYJfootersnsList .iconF {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns3.png);
+}
+
+.SYJfootersnsList .iconF:hover {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns3_1.png);
+}
+
+.SYJfootersnsList .iconT {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns4.png);
+}
+
+.SYJfootersnsList .iconT:hover {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns4_1.png);
+}
+
+.SYJfootersnsList .iconKS {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns5.png);
+}
+
+.SYJfootersnsList .iconKS:hover {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns5_1.png);
+}
+
+.SYJfootersnsList .iconI {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns7.png);
+}
+
+.SYJfootersnsList .iconI:hover {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns7_1.png);
+}
+
+.SYJfootersnsList .iconNB {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns9.png);
+}
+
+.SYJfootersnsList .iconNB:hover {
+    background-image: url(https://korean.visitkorea.or.kr/resources/images/common/ico_sns9_1.png);
+}
+.SnsName {
+    display: inline-block;
+    margin-left: 3px;
+    color: #666;
+    font-size: 15px;
+    line-height: 16px;
+    vertical-align: middle;
+    text-align: left;
+}
+.SYJfooterBanner {
+    float: left;
+    margin-left: 10px;
+}
+
+.SYJfooterBanner img {
+    padding-left: 5px;
+	width: 180px;
+}
+
+.SYJfooterInfoBox {
+    width: 100%;
+    padding-top: 10px;
+    overflow: hidden;
+
+}
+
+.SYJfooterInfoBox li {
+    float: left;
+    list-style: none;
+    line-height: 30px;
+}
+
+.SYJfooterInfoBox li:first-child {
+    padding-left: 5px;
+}
+.SYJfooterInfoBox .footerPersonalInfo {
+    color: #2c47dc;
+    font-weight: 700;
+}
+.SYJfooterInfoBox a {
+    margin-right: 23px;
+    color: #666;
+    font-size: 13px;
+    letter-spacing: -0.25px;
+    text-decoration: none;
+}
+.SYJfooterAddress li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 5px;
+    padding-left: 3px;
+    line-height: 1.8;
+    color: #666;
+    font-size: 13px;
+}
+.SYJfooterSmallLogo img {
+    width: 89px;
+    height: 14px;
+    padding-top: 23px;
+}
+.SYJfooterLogo {
+
+    position: relative;
+    left: 460px;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+
+}
+.SYJfooterLogoList {
+
+    float: right;
+    padding-top: 14px;
+}
+
+.SYJfooterLogoList li {
+    float: left;
+    margin-left: 20px;
+    list-style: none;
+}
+ 

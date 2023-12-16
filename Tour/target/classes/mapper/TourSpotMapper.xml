@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.TourSpotMapper">
+
+	<!-- 여행지조회 -->
+	<select id="selectSpotAll" resultType="TourlistSpot">
+ 
+	  <![CDATA[
+	  
+	  
+		 select ROWNUM, a.contentid,a.contenttypeid,a.title, a.address ,  b.CONTENTID  as ck  from ( 
+		  
+		    SELECT ROWNUM, contentid,contenttypeid,title, address
+		           FROM (
+		            SELECT *
+		            FROM contentInfoTbl
+		            WHERE contenttypeid = '12' AND createdtime >= TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYYMMDD')
+		            ORDER BY createdtime DESC
+		     )  
+		 ) a
+		 left outer join mainTbl b
+		 on a.contentid = b.CONTENTID 
+ 
+        ]]>
+	</select>
+
+
+	<!-- 여행지저장 -->
+	<insert id="insertSpot" parameterType="TourlistSpot">
+		INSERT INTO mainTbl
+		(contentid, contenttypeid)
+		VALUES (#{contentid}, #{contenttypeid})
+	</insert>
+
+	<!-- 체크된 여행지 조회 -->
+	<select id="selectedSpot" resultType="TourlistSpot">
+		SELECT ROWNUM,a.contentid, a.title, a.address,a.FIRSTIMAGE
+		FROM contentInfoTbl a
+		INNER JOIN mainTbl b ON a.contentid = b.contentid
+		WHERE a.contenttypeid = '12'
+
+	</select>
+
+	<!-- 여행지 삭제 -->
+	<delete id="deleteSelectedSpots" parameterType="java.util.List">
+		DELETE FROM mainTbl
+		WHERE contentid IN
+		<foreach collection="list" item="contentid" open="(" close=")" separator=",">
+			#{contentid, jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+
+	<!-- 축제/행사 조회 -->
+	<select id="selectFestivalAll" resultType="TourlistSpot">
+	<![CDATA[
+
+	    	SELECT ROWNUM, a.contentid,a.contenttypeid,a.title, a.address ,  b.CONTENTID  as ck 
+		FROM (
+		    SELECT ROWNUM, contentid,contenttypeid,title, address
+		    FROM ( 
+        SELECT * 
+        from contentInfoTbl
+		    WHERE contenttypeid = 15
+		      AND TO_DATE(createdtime, 'YYYYMMDDHH24MISS') >= TO_DATE('20221001', 'YYYYMMDD')
+		      AND TO_DATE(createdtime, 'YYYYMMDDHH24MISS') < TO_DATE('20221201', 'YYYYMMDD')
+		    ORDER BY createdtime DESC
+		)
+    )a
+    left outer join mainTbl b
+    on a.contentid=b.CONTENTID
+
+	]]>
+	</select>
+
+	<!-- 체크된 축제/행사 조회 -->
+	<select id="selectedFestival" resultType="TourlistSpot">
+		SELECT ROWNUM,a.contentid, a.title, a.address,a.FIRSTIMAGE,a.cat2
+		FROM contentInfoTbl a
+		INNER JOIN mainTbl b ON a.contentid = b.contentid
+		WHERE a.contenttypeid = '15'
+	</select>
+	
+	<!-- 축제/행사 저장 -->
+	<insert id="insertFspot" parameterType="TourlistSpot">
+		INSERT INTO mainTbl
+		(contentid, contenttypeid)
+		VALUES (#{contentid}, #{contenttypeid})
+	</insert>
+	
+	 
+	
+	<!-- 여행코스 조회 -->
+	<select id="selectCourseAll" resultType="TourlistSpot">
+	<![CDATA[
+      select ROWNUM, a.contentid,a.contenttypeid,a.title, a.address ,  b.CONTENTID  as ck from(
+        select rownum,contentid,contenttypeid,title,address 
+        from (
+        select *
+        from contentInfoTbl
+        where contenttypeid = '25'
+        and createdtime >= '20220101'
+        and createdtime < '20240101'
+        order by createdtime DESC
+        )
+        )a
+        left outer join mainTbl b
+        on a.contentid = b.CONTENTID
+	]]>
+	</select>
+
+	<!-- 체크된 여행코스 조회 -->
+	
+	<select id="selectedCourse" resultType="TourlistSpot">
+		SELECT ROWNUM,a.contentid, a.title, a.address
+		FROM contentInfoTbl a
+		INNER JOIN mainTbl b ON a.contentid = b.contentid
+		WHERE a.contenttypeid = '25'
+	</select>
+	
+
+	<!-- 여행코스 저장 -->
+	<insert id="insertCspot" parameterType="TourlistSpot">
+		INSERT INTO mainTbl
+		(contentid, contenttypeid)
+		VALUES (#{contentid}, #{contenttypeid})
+	</insert>
+
+ 
+
+
+</mapper>  

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="UserDTO" type="com.acorn.tour.user.UserDTO"/>
+		<typeAlias alias="TourlistSpot" type="com.acorn.tour.tourAlist.TourlistSpot"/>
+		<typeAlias alias="User" type="com.acorn.tour.touradmin.User"/>
+		<typeAlias alias="Sigungu" type="com.acorn.tour.sido.SigunguDTO"/>
+		<typeAlias alias="RecSpot" type="com.acorn.tour.recommend.RecSpot"/>
+		<typeAlias alias="RecRestaurant" type="com.acorn.tour.recommend.RecRestaurant"/>
+		<typeAlias alias="Sido" type="com.acorn.tour.sido.SidoDTO"/>
+		<typeAlias alias="RecCourse" type="com.acorn.tour.recommend.RecCourse"/>
+	</typeAliases>
+
+</configuration>
+
+
+
+

@@ -1,0 +1,192 @@
+@charset "UTF-8";
+
+
+header{
+   position: relative;
+   
+}
+section{
+   padding-top:140px;
+   position: relative;
+   width: 100%;
+   height: 900px;
+   
+    
+}
+section h1,p{
+  text-align: center;
+}
+section p {
+	margin-top: 10px;
+}
+.joinimg {
+	
+	position:absolute;
+	left:185px;
+	top:60px;
+	max-width:100%;
+    display:block;
+  	border-radius: 5px;
+  	display: flex;
+	justify-content: center;
+	
+}
+
+.joinimg h2{
+	position: absolute;
+	left: 35px;
+	top:35px; 
+	letter-spacing: 3px;
+	 
+}
+ 
+.img1{
+	 
+	width:400px;
+	height:530px;
+	border-radius: 5px;
+	
+}
+.img2{
+	position: absolute;
+	width: 450px;
+	left: -20px;
+	bottom: 85px;
+}
+.joinwrap{
+    position: absolute;
+    left: 350px;
+    width: 1300px;
+    height: 700px;
+    margin-top: 50px;
+    
+    border-radius: 10px;
+    /*background-color: #e7f2fb;*/
+    
+}
+.joinwrap b{
+    margin-left: 20px;
+    font-size: 20px;
+    
+}
+ 
+.formwrap{
+   	width:450px;
+   	height:530px;
+   	background-color:#f7f7f7;
+    border-radius: 5px;
+    box-shadow:0 8px 20px rgba(35,0,77,.2);
+    margin-top: 60px;
+    margin-left: 600px;
+    z-index: 10px;
+}
+.formwrap label{
+    font-size: 15px;
+}
+.formwrap input{
+	position:absolute;
+    width: 250px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    top: 10px;
+    left:45px;
+    
+}
+input::placeholder{
+	font-size: 9px;
+}
+.joinContents,.joinContents2{
+	position:relative;
+	width:380px;
+	height:45px;
+    margin-top: 25px;
+    margin-left: 34px;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+}
+.joinContents .icon{
+	width: 30px;
+	height: auto;
+	margin-top: 10px;
+	margin-left: 5px;
+}
+.joinContents i{
+	position: absolute;
+	right: 30px;
+	top:23px;
+	font-size: 15px;
+} 
+.joinContents button{
+	position: absolute;
+	right: 10px;
+	top:12px;
+	background-color: #f8fbfe;
+	border: 2px solid #ededed;
+	border-radius: 5px;
+}
+.joinContents2 .icon{
+	width: 30px;
+	height: auto;
+	margin-top: 10px;
+	margin-left: 5px;
+}
+.joinContents2 input{
+	width: 90px;
+    height: 30px;
+    font-size: 9px;
+}
+.joinContents2 .emailD{
+	position: absolute;
+	left: 157px;
+	top:9px;
+}
+.joinContents2 span{
+	position: absolute;
+	left:135px;
+	top:12px;
+}
+.joinContents2 select{
+	position: absolute;
+	left:250px;
+	top:8px;
+	width: 100px;
+    height: 30px;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+}
+
+#registerbtn, #cancelbtn{
+    width: 100px;
+    height: 35px;
+    border-radius:5px;
+    border: none;
+    background-color: #175385;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition:.3s
+}
+#registerbtn{
+	margin-left:125px;
+    margin-top: 50px;
+    margin-bottom:10px;
+}
+#registerbtn:hover{
+	background-color: #2b8bdb;
+}
+
+.confirm{
+	margin-left: 36px;
+	margin-top: 7px;
+	
+}
+#resultMessage{
+	text-align: center;
+	padding-bottom: 53px;
+}
+
+.btnBox{
+	margin-top: 30px;
+}

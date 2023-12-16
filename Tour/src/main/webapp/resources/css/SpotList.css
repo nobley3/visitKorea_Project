@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'MICEMyungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+section {
+   display: flex;
+   justify-content: space-between;
+   padding: 20px;
+   padding-top: 100px;
+}
+
+.tablewrap{
+     
+    padding: 10px;
+    width: 50%; /* 좌우 테이블의 너비 조절 */
+    border-radius: 10px;
+    position: relative;
+}
+
+table{
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+	 
+}
+
+th, td {
+ 
+  padding: 8px;
+  text-align: left;
+   
+  text-align: center;
+}
+th {
+  background-color:#c7b0f7;
+  font-size: 18px;
+  color: #f7f7f7;
+}
+ #selectedSpots {
+     width: 100%;
+     margin-top: 20px;
+ }
+ 
+ section button{
+ 	width: 100px;
+ 	height: 50px;
+ 	border-radius: 10px;
+ 	border: none;
+ 	border: 2px solid #c7b0f7;
+ 	background-color: white;
+ 	margin-top: 20px;
+ 	margin-left: 40%;
+ 	
+ 	font-family: 'MICEMyungjo';
+ 	 
+ }

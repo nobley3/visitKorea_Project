@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.RecMapper"> 
+    
+   
+    <select id="selectAll"   resultType="Sigungu"  parameterType="int"  >
+        SELECT * FROM SigunguTbl
+        WHERE sigungucode LIKE CONCAT(#{code}, '%')
+    </select> 
+    <select id="getRandom"   resultType="RecSpot"  >
+         <![CDATA[
+		    SELECT * FROM (
+		        SELECT * FROM RECPLACETBL ORDER BY DBMS_RANDOM.VALUE
+		    ) WHERE ROWNUM <= 10
+    	]]>
+    </select>  
+    <select id="getRecInfo" resultType="RecSpot" parameterType="String">
+        SELECT * FROM RECPLACETBL WHERE contentid = #{contentId}
+    </select>
+	<select id="getFoodInfo" resultType="RecRestaurant" parameterType="String">
+        SELECT * FROM RECFOODTBL WHERE contentid = #{contentId}
+    </select>
+    <select id="getSido" resultType="String" parameterType="int">
+        SELECT nickname FROM sidotbl WHERE sidocode=#{sidocode}
+    </select>
+    <select id="getSigungu" resultType="String" parameterType="String">
+        SELECT NAME FROM SigunguTbl WHERE SIGUNGUCODE=#{sigungucode}
+    </select>
+    <insert id="insertTravelCourse" parameterType="RecCourse">
+        INSERT INTO TravelCourse (course_id, user_id, course_name, duration, course, total_distance, locations, create_date,first_img,second_img,third_img)
+        VALUES (#{courseId}, #{userId}, #{courseName}, #{duration}, #{course}, #{totalDistance}, #{locations}, #{createDate},#{firstImg},#{secondImg},#{thirdImg})
+    </insert>
+    <select id="getMyRecCourse" resultType="RecCourse" parameterType="String">
+        SELECT * FROM TravelCourse WHERE user_id=#{userId}
+    </select>
+    <select id="allRecCourse" resultType="RecCourse" >
+        SELECT * FROM TravelCourse 
+    </select>
+    <select id="viewMyRecCourse" resultType="RecCourse" parameterType="String">
+        SELECT * FROM TravelCourse WHERE course_id=#{courseId}
+    </select>
+    <select id="getUserNickname" resultType="String" parameterType="String">
+        select nickname from UserTbl where userid = #{userid}
+    </select>
+ 
+</mapper>
